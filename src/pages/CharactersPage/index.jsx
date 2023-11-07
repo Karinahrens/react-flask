@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { CharacterGallery, Form } from "../../components";
 
-const baseUrl = "TO BE REPLACED WITH DEPLOYED LINK";
+const baseUrl = "https://flask-project-3ttz.onrender.com";
 
 function CharactersPage() {
     const [name, setName] = useState('');
