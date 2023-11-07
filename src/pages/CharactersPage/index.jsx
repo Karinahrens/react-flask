@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { CharacterGallery, Form } from "../../components";
 
-const baseUrl = "https://flask-project-3ttz.onrender.com";
+const baseUrl = "https://flask-project-3ttz.onrender.com/characters";
 
 function CharactersPage() {
     const [name, setName] = useState('');
@@ -18,13 +18,17 @@ function CharactersPage() {
         setSearchString(name)
     }
 
-    const findCharacter = async () => {
-        if (name == "") {
-            setFilteredCharacters(characters)
-        } else {
-            setFilteredCharacters(characters.filter(char => char.name.includes(name)))
-        }
+    const findCharacter = () => {
+    const lowerCaseName = searchString.toLowerCase(); 
+    if (lowerCaseName === "") {
+        setFilteredCharacters(characters);
+    } else {
+        setFilteredCharacters(
+            characters.filter(char => char.name.toLowerCase().includes(lowerCaseName))
+        );
     }
+}
+
 
     const fetchCharacters = async () => {
         const response = await fetch(baseUrl);
@@ -38,7 +42,7 @@ function CharactersPage() {
 
     useEffect(() => {
         findCharacter()
-    }, [characters, searchString])
+    }, [characters, searchString, name])
 
     return (
         <main>
